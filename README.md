@@ -1,35 +1,25 @@
-```
+```text
 api-key-manager/
-├── client/                  # FRONTEND (Assegnato ad Alfio)
-│   ├── public/
-│   └── src/
-│       ├── components/      # Componenti UI (bottoni, tabelle, form)
-│       ├── views/           # Maschere FE (Dashboard, Vista Chiavi, Login)
-│       ├── services/        # Chiamate API verso il backend
-│       ├── App.js
-│       └── index.js
-│
-├── server/                  # BACKEND (Assegnato a Ettore, Dario, Rick)
-│   ├── config/              # Configurazione DB Atlas e variabili d'ambiente (Rick)
-│   │   └── db.js            # Connessione al database
-│   ├── controllers/         # FUNZ. GEN. API (Logica di business)
-│   │   ├── keyController.js # Generazione, revoca e lista chiavi
-│   │   └── authController.js# Autenticazione admin
-│   ├── middleware/          # CYBER SECURITY (Verifica chiave su rotte protette)
-│   │   └── keyValidator.js  # Middleware di controllo API Key
-│   ├── models/              # ORM / ODM (Assegnato a Dario)
-│   │   ├── User.js          # Modello Utente/Admin
-│   │   └── ApiKey.js        # Modello della API Key (ID, hash, permessi, stato)
-│   ├── routes/              # ROUTE API (Assegnato ad Ettore)
-│   │   ├── authRoutes.js    # Rotte di login amministratore
-│   │   └── keyRoutes.js     # Rotte per creare/vedere/revocare chiavi
-│   ├── utils/               # Funzioni di utilità (es. crittografia/generazione stringhe)
-│   │   └── cryptoHelper.js
-│   ├── .env.example         # File di esempio per le credenziali Atlas
-│   ├── package.json
-│   └── server.js            # Entry point dell'applicazione backend
-│
-└── README.md                # Documentazione generale del progetto
+├── client/                  # FRONTEND (Invariato, gestito da Alfio)
+└── server/                  # BACKEND in PYTHON (Ettore, Dario, Rick)
+    ├── app/
+    │   ├── config/          # Configurazione DB Atlas (Rick)
+    │   │   └── database.py
+    │   ├── controllers/     # FUNZ. GEN. API (Logica di business)
+    │   │   ├── auth.py
+    │   │   └── keys.py
+    │   ├── middlewares/     # CYBER SECURITY (Verifica chiave)
+    │   │   └── security.py
+    │   ├── models/          # ORM / ODM (Gestito da Dario tramite MongoEngine/Beanie)
+    │   │   ├── user.py
+    │   │   └── key.py
+    │   ├── routes/          # ROUTE API (Gestito da Ettore)
+    │   │   ├── auth_routes.py
+    │   │   └── key_routes.py
+    │   └── main.py          # Entry point dell'applicazione (es. FastAPI/Flask)
+    ├── .env                 # Credenziali Atlas (Rick)
+    ├── .gitignore           # Per escludere __pycache__ e il file .env
+    └── requirements.txt     # File delle dipendenze Python (al posto del package.json)               # Documentazione generale del progetto
 
 Un'applicazione full-stack per la generazione, visualizzazione, verifica e revoca di API Key, progettata con particolare attenzione alla sicurezza e all'autenticazione machine-to-machine (M2M).
 
