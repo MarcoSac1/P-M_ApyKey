@@ -1,40 +1,21 @@
-```text
-api-key-manager/
-├── client/                  # FRONTEND (Invariato, gestito da Alfio)
-└── server/                  # BACKEND in PYTHON (Ettore, Dario, Rick)
-    ├── app/
-    │   ├── config/          # Configurazione DB Atlas (Rick)
-    │   │   └── database.py
-    │   ├── controllers/     # FUNZ. GEN. API (Logica di business)
-    │   │   ├── auth.py
-    │   │   └── keys.py
-    │   ├── middlewares/     # CYBER SECURITY (Verifica chiave)
-    │   │   └── security.py
-    │   ├── models/          # ORM / ODM (Gestito da Dario tramite MongoEngine/Beanie)
-    │   │   ├── user.py
-    │   │   └── key.py
-    │   ├── routes/          # ROUTE API (Gestito da Ettore)
-    │   │   ├── auth_routes.py
-    │   │   └── key_routes.py
-    │   └── main.py          # Entry point dell'applicazione (es. FastAPI/Flask)
-    ├── .env                 # Credenziali Atlas (Rick)
-    ├── .gitignore           # Per escludere __pycache__ e il file .env
-    └── requirements.txt     # File delle dipendenze Python (al posto del package.json)               # Documentazione generale del progetto
+# API Key Manager
 
-Un'applicazione full-stack per la generazione, visualizzazione, verifica e revoca di API Key, progettata con particolare attenzione alla sicurezza e all'autenticazione machine-to-machine (M2M).
+Un'applicazione full-stack per la generazione, visualizzazione, verifica e revoca di API Key, progettata con particolare attenzione alla sicurezza e all'autenticazione machine-to-machine (M2M). 
+
+Il sistema è basato su un backend in **Python** e un frontend reattivo in **JavaScript/TypeScript**.
 
 ## 🚀 Funzionalità del Progetto
 
 ### Funzionalità Minime (Core)
-- **Generazione API Key:** Creazione di chiavi uniche e sicure associate a specifiche applicazioni.
-- **Lista Chiavi:** Visualizzazione della dashboard delle chiavi attive e storiche.
-- **Revoca:** Annullamento immediato della validità di una chiave.
-- **Endpoint Protetto:** Rotte API accessibili esclusivamente previa validità dell'API Key.
-- **Verifica Chiave:** Middleware di validazione in tempo reale delle richieste in ingresso.
+- **Generazione API Key:** Creazione di chiavi uniche, sicure e cifrate associate a specifiche applicazioni.
+- **Lista Chiavi:** Dashboard per la visualizzazione delle chiavi attive, associate agli utenti e storiche.
+- **Revoca:** Annullamento immediato della validità di una chiave in tempo reale.
+- **Endpoint Protetto:** Rotte API dedicate accessibili esclusivamente previa validità dell'API Key.
+- **Verifica Chiave:** Middleware di validazione e hashing in tempo reale delle richieste in ingresso.
 
 ### Funzionalità Cyber Security (Avanzate)
 - Autenticazione Machine-to-Machine (M2M).
-- Gestione sicura dei segreti applicativi (hashing e storage cifrato).
+- Gestione sicura dei segreti applicativi (hashing crittografico e storage cifrato).
 - Rotazione programmata e manuale delle credenziali.
 
 ---
@@ -42,85 +23,48 @@ Un'applicazione full-stack per la generazione, visualizzazione, verifica e revoc
 ## 👥 Organizzazione del Team e Assegnazione Task
 
 In base alla pianificazione iniziale, lo sviluppo è così suddiviso:
-- **Database & Cloud Infrastructure:** Rick (Configurazione MongoDB Atlas, gestione utenti e credenziali).
+- **Database & Cloud Infrastructure:** Rick (Configurazione MongoDB Atlas, gestione utenti e credenziali in Python).
 - **Project Setup & Git:** Marco (Inizializzazione repository, inviti e definizione dello Scaffolding).
-- **Frontend Development:** Alfio (Sviluppo delle interfacce grafiche e maschere utente).
-- **API Design & Routing:** Ettore (Architettura dei flussi API e logica delle rotte).
-- **Database Connection & ORM/ODM:** Dario (Integrazione del database ed implementazione dei modelli tramite ORM).
+- **Frontend Development:** Alfio (Sviluppo delle interfacce grafiche e maschere utente in JavaScript/TypeScript).
+- **API Design & Routing:** Ettore (Architettura dei flussi API e logica delle rotte con framework Python).
+- **Database Connection & ORM/ODM:** Dario (Integrazione del database ed implementazione dei modelli tramite ORM/ODM Python).
 
 ---
 
 ## 📂 Scaffolding del Progetto (Struttura Directory)
 
-Il progetto adotta un approccio a cartelle separate per **Backend (Server)** e **Frontend (Client)** all'interno della stessa repository per garantire modularità e pulizia.
+Il progetto adotta un approccio a cartelle separate per **Backend (Python)** e **Frontend (Client)** all'interno della stessa repository per garantire modularità e indipendenza nello sviluppo.
 
 ```text
 api-key-manager/
-├── client/                  # Frontend (Sviluppato da Alfio)
+├── client/                  # FRONTEND (Sviluppato da Alfio)
 │   ├── public/
 │   └── src/
-│       ├── components/      # Componenti UI riutilizzabili
+│       ├── components/      # Componenti UI riutilizzabili (pulsanti, form)
 │       ├── views/           # Maschere principali (Dashboard, Login, Key Management)
-│       ├── services/        # Client API per comunicare con il backend
-│       ├── utils/           # Funzioni helper
+│       ├── services/        # Client API per comunicare con il backend Python
 │       ├── App.js
 │       └── index.js
 │
-├── server/                  # Backend (Sviluppato da Ettore, Dario, Rick)
-│   ├── config/              # Configurazione DB Atlas e variabili d'ambiente
-│   │   └── db.js            # Connessione gestita da Dario / Rick
-│   ├── controllers/         # Logica delle funzioni generali API
-│   │   ├── authController.js
-│   │   └── keyController.js
-│   ├── middleware/          # Middleware di Cyber Security e Verifica API Key
-│   │   └── authMiddleware.js
-│   ├── models/              # Modelli ORM/ODM (Utenti, API Key) gestiti da Dario
-│   │   ├── Key.js
-│   │   └── User.js
-│   ├── routes/              # Definizione delle rotte API gestite da Ettore
-│   │   ├── authRoutes.js
-│   │   └── keyRoutes.js
-│   ├── utils/               # Generatori di chiavi crittografiche e hashing
-│   │   └── crypto.js
-│   ├── .env.example         # Template per le variabili d'ambiente (M2M, Atlas URI)
-│   ├── package.json
-│   └── server.js            # Entry point dell'applicazione
+├── server/                  # BACKEND PYTHON (Ettore, Dario, Rick)
+│   ├── app/
+│   │   ├── config/          # Configurazione DB Atlas (Rick)
+│   │   │   └── database.py  # Connessione gestita con PyMongo/MongoEngine
+│   │   ├── controllers/     # Logica delle funzioni generali API
+│   │   │   ├── auth.py      # Gestione login amministratore
+│   │   │   └── keys.py      # Logica di generazione e revoca chiavi
+│   │   ├── middlewares/     # Middleware di Cyber Security (Verifica API Key)
+│   │   │   └── security.py
+│   │   ├── models/          # Modelli ORM/ODM (Utenti, API Key) gestiti da Dario
+│   │   │   ├── user.py
+│   │   │   └── key.py
+│   │   ├── routes/          # Definizione delle rotte API gestite da Ettore
+│   │   │   ├── auth_routes.py
+│   │   │   └── key_routes.py
+│   │   └── main.py          # Entry point dell'applicazione (es. FastAPI / Flask)
+│   ├── .env                 # File locale per le credenziali sensibili di Atlas (Rick)
+│   ├── .env.example         # Template per le variabili d'ambiente di squadra
+│   ├── .gitignore           # Esclusione di venv/ e file .env
+│   └── requirements.txt     # Dipendenze Python del progetto
 │
 └── README.md                # Documentazione del progetto
-```
-
----
-
-## 🛠️ Stack Tecnologico Consigliato
-
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB Atlas (NoSQL) con Mongoose (ODM)
-- **Frontend:** React.js o Vue.js (per la gestione reattiva delle maschere)
-- **Sicurezza:** `crypto` (nativo Node) o `bcrypt` per l'hashing dei segreti applicativi
-
----
-
-## ⚙️ Installazione e Configurazione
-
-1. **Clonare la repository:**
-   ```bash
-   git clone <url-repository>
-   cd api-key-manager
-   ```
-
-2. **Configurazione Backend:**
-   ```bash
-   cd server
-   npm install
-   ```
-   Creare un file `.env` basandosi su `.env.example` e inserire la stringa di connessione di MongoDB Atlas fornita da Rick.
-
-3. **Configurazione Frontend:**
-   ```bash
-   cd ../client
-   npm install
-   ```
-
-4. **Avvio in modalità sviluppo:**
-   - Server: `npm run dev` (dentro la cartella server)
-   - Client: `npm start` (dentro la cartella client)
