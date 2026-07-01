@@ -1,0 +1,21 @@
+{
+  "name": "p-m_apykey",
+  "version": "1.0.0",
+  "description": "``` api-key-manager/ ├── client/                  # FRONTEND (Assegnato ad Alfio) │   ├── public/ │   └── src/ │       ├── components/      # Componenti UI (bottoni, tabelle, form) │       ├── views/           # Maschere FE (Dashboard, Vista Chiavi, Login) │       ├── services/        # Chiamate API verso il backend │       ├── App.js │       └── index.js │ ├── server/                  # BACKEND (Assegnato a Ettore, Dario, Rick) │   ├── config/              # Configurazione DB Atlas e variabili d'ambiente (Rick) │   │   └── db.js            # Connessione al database │   ├── controllers/         # FUNZ. GEN. API (Logica di business) │   │   ├── keyController.js # Generazione, revoca e lista chiavi │   │   └── authController.js# Autenticazione admin │   ├── middleware/          # CYBER SECURITY (Verifica chiave su rotte protette) │   │   └── keyValidator.js  # Middleware di controllo API Key │   ├── models/              # ORM / ODM (Assegnato a Dario) │   │   ├── User.js          # Modello Utente/Admin │   │   └── ApiKey.js        # Modello della API Key (ID, hash, permessi, stato) │   ├── routes/              # ROUTE API (Assegnato ad Ettore) │   │   ├── authRoutes.js    # Rotte di login amministratore │   │   └── keyRoutes.js     # Rotte per creare/vedere/revocare chiavi │   ├── utils/               # Funzioni di utilità (es. crittografia/generazione stringhe) │   │   └── cryptoHelper.js │   ├── .env.example         # File di esempio per le credenziali Atlas │   ├── package.json │   └── server.js            # Entry point dell'applicazione backend │ └── README.md                # Documentazione generale del progetto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcoSac1/P-M_ApyKey.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MarcoSac1/P-M_ApyKey/issues"
+  },
+  "homepage": "https://github.com/MarcoSac1/P-M_ApyKey#readme"
+}
